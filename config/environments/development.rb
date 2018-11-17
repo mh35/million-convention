@@ -26,6 +26,8 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.session_store_servers = 'redis://localhost:6379/0'
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
