@@ -36,7 +36,8 @@ class LoginController < ApplicationController
       return
     end
     # After this, get request token
-    token_resp = api_http.post_form('https://api.line.me/oauth2/v2.1/token', {
+    token_resp = Net::HTTP.post_form(
+      'https://api.line.me/oauth2/v2.1/token', {
       'grant_type' => 'authorization_code',
       'code' => params['code'],
       'redirect_uri' =>
