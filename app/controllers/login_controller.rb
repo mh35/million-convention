@@ -90,6 +90,7 @@ class LoginController < ApplicationController
     session[:display_name] = decoded_id_token['name']
     session[:login_state] = nil
     session[:login_nonce] = nil
+    session[:is_admin] = (line_uid == ENV['LINE_ADMIN_UID'])
     redirect_to controller: 'top', action: 'index'
   end
 end
