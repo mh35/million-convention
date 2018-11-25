@@ -26,11 +26,15 @@ class LoginController < ApplicationController
 
   def callback
     if params[:error]
+      session[:login_state] = nil
+      session[:login_nonce] = nil
       flash[:error_msg] = 'リクエストは拒否されました'
       redirect_to controller: 'top', action: 'index'
       return
     end
     unless params[:state] == session[:login_state]
+      session[:login_state] = nil
+      session[:login_nonce] = nil
       flash[:error_msg] = '不正なログインです'
       redirect_to controller: 'top', action: 'index'
       return
@@ -46,6 +50,8 @@ class LoginController < ApplicationController
       'client_secret' => ENV['LINE_OPENID_CHANNEL_SECRET']
     })
     unless token_resp.code.to_i < 300
+      session[:login_state] = nil
+      session[:login_nonce] = nil
       flash[:error_msg] = 'ログイン処理でエラーが発生しました'
       redirect_to controller: 'top', action: 'index'
       return
@@ -61,12 +67,29 @@ class LoginController < ApplicationController
     unless decoded_id_token['iss'] == 'https://access.line.me' &&
       decoded_id_token['aud'] == ENV['LINE_OPENID_CHANNEL_ID'] &&
       decoded_id_token['nonce'] == session[:login_nonce]
+      session[:login_state] = nil
+      session[:login_nonce] = nil
       flash[:error_msg] = '不正なIDトークンです'
       redirect_to controller: 'top', action: 'index'
       return
     end
     line_uid = decoded_id_token['sub']
-    flash[:error_msg] = decoded_id_token['name']
+    user = User.where(line_uid: line_uid).first
+    unless user
+      user = User.new
+      user.last_wrote_at = Time.now - 3600
+      user.last_thread_created_at = Time.now - 3600
+    end
+    user.line_uid = line_uid
+    user.access_token = access_token
+    user.refresh_token = refresh_token
+    user.access_token_expires_at = expire_time
+    user.display_name = decoded_id_token['name']
+    user.save
+    session[:uid] = user.id
+    session[:display_name] = decoded_id_token['name']
+    session[:login_state] = nil
+    session[:login_nonce] = nil
     redirect_to controller: 'top', action: 'index'
   end
 end
