@@ -91,6 +91,15 @@ class LoginController < ApplicationController
     session[:login_state] = nil
     session[:login_nonce] = nil
     session[:is_admin] = (line_uid == ENV['LINE_ADMIN_UID'])
+    flash[:notice_msg] = 'ログインしました'
+    redirect_to controller: 'top', action: 'index'
+  end
+
+  def logout
+    session[:uid] = nil
+    session[:display_name] = nil
+    session[:is_admin] = nil
+    flash[:notice_msg] = 'ログアウトしました'
     redirect_to controller: 'top', action: 'index'
   end
 end
