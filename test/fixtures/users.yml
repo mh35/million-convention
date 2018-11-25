@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  line_uid: MyString
+  access_token: MyText
+  refresh_token: MyText
+  access_token_expires_at: 2018-11-25 14:35:53
+  display_name: MyString
+  banned: false
+  last_wrote_at: 2018-11-25 14:35:53
+  last_thread_created_at: 2018-11-25 14:35:53
+
+two:
+  line_uid: MyString
+  access_token: MyText
+  refresh_token: MyText
+  access_token_expires_at: 2018-11-25 14:35:53
+  display_name: MyString
+  banned: false
+  last_wrote_at: 2018-11-25 14:35:53
+  last_thread_created_at: 2018-11-25 14:35:53

@@ -23,7 +23,7 @@ class LoginController < ApplicationController
       redirect_to :back
     end
   end
-  
+
   def callback
     if params[:error]
       flash[:error_msg] = 'リクエストは拒否されました'
@@ -65,6 +65,7 @@ class LoginController < ApplicationController
       redirect_to controller: 'top', action: 'index'
       return
     end
+    line_uid = decoded_id_token['sub']
     flash[:error_msg] = decoded_id_token['name']
     redirect_to controller: 'top', action: 'index'
   end
