@@ -36,19 +36,14 @@ class LoginController < ApplicationController
       return
     end
     # After this, get request token
-    api_http = Net::HTTP.new('api.line.me', 443)
-    api_http.use_ssl = true
-    token_resp = nil
-    api_http.start do
-      token_resp = api_http.post_form('/oauth2/v2.1/token', {
-        'grant_type' => 'authorization_code',
-        'code' => params['code'],
-        'redirect_uri' =>
-          'https://million-convention.mh35.info/login/callback',
-        'client_id' => ENV['LINE_OPENID_CHANNEL_ID'],
-        'client_secret' => ENV['LINE_OPENID_CHANNEL_SECRET']
-      })
-    end
+    token_resp = api_http.post_form('https://api.line.me/oauth2/v2.1/token', {
+      'grant_type' => 'authorization_code',
+      'code' => params['code'],
+      'redirect_uri' =>
+        'https://million-convention.mh35.info/login/callback',
+      'client_id' => ENV['LINE_OPENID_CHANNEL_ID'],
+      'client_secret' => ENV['LINE_OPENID_CHANNEL_SECRET']
+    })
     unless token_resp.code.to_i < 300
       flash[:error_msg] = 'ログイン処理でエラーが発生しました'
       redirect_to controller: 'top', action: 'index'
