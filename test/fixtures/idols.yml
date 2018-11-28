@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  idol_num: 1
+  icon_url: MyText
+
+two:
+  name: MyString
+  idol_num: 1
+  icon_url: MyText

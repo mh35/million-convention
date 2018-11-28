@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181125053553) do
+ActiveRecord::Schema.define(version: 20181128003530) do
+
+  create_table "idols", force: :cascade do |t|
+    t.string "name"
+    t.integer "idol_num"
+    t.text "icon_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_idols_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "line_uid", null: false
