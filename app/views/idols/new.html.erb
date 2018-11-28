@@ -1,5 +1,5 @@
 <h1>アイドル作成</h1>
-<%= form_with @idol do |form| %>
+<%= form_with model: @idol do |form| %>
 <p><label>名前:<%= form.text_field :name %></label></p>
 <p><label>順序:<%= form.number_field :idol_num %></label></p>
 <p><label>アイコンURL:<%= form.text_field :icon_url %></label></p>
