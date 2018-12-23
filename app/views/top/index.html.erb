@@ -1,5 +1,18 @@
-<h1>Top#index</h1>
-<p><%= controller.controller_name %> <%= controller.action_name %></p>
-<% if flash[:error_msg] %>
-<p><%= flash[:error_msg] %></p>
+<h1>コンベンションセンターへようこそ</h1>
+<table class="idols_table">
+<% @idols.each_slice(4) do |idol_row| %>
+    <tr class="idol_row">
+    <% idol_row.each do |idol| %>
+        <td class="id_cell">
+            <a href="<%= link_to controller: 'idols', action: 'show',
+            id: idol.id %>">
+                <div class="idol_img_wrap">
+                    <img src="<%= idol.icon_url %>" alt="<%= idol.name %>" />
+                </div>
+                <div class="idol_name"><%= idol.name %></div>
+            </a>
+        </td>
+    <% end %>
+    </tr>
 <% end %>
+</table>
