@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :thread_responses, only: [:create], path: 'responses'
     end
   end
+  resources :reports, only: [:create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
