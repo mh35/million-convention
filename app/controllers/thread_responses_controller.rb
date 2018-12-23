@@ -27,6 +27,12 @@ class ThreadResponsesController < ApplicationController
                   idol_id: @idol.id, id: @idol_thread.id
       return
     end
+    if params[:thread_response][:content].length > 180
+      flash[:error_msg] = '書き込みが長すぎです。180文字以下にしてください'
+      redirect_to controller: 'idol_threads', action: 'show',
+                  idol_id: @idol.id, id: @idol_thread.id
+      return
+    end
     begin
       ActiveRecord::Base.transaction do
         @res = ThreadResponse.new(params[:thread_response].permit(:content))
