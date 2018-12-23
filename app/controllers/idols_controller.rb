@@ -12,6 +12,8 @@ class IdolsController < ApplicationController
       else
         @can_create_thread = false
       end
+      @idol_thread = IdolThread.new
+      @idol_thread.idol = @idol
     rescue
       redirect_to controller: 'top', action: 'index'
     end
