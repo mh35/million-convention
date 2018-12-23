@@ -3,6 +3,20 @@
 <div class="response">
   <div class="res_header">
     <span class="res_no"><%= res.res_no %></span>
+    <span class="res_date">
+      <% if res.deleted %>
+        (削除済み)
+      <% else %>
+        <%= res.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+      <% end %>
+    </span>
+  </div>
+  <div class="res_body">
+    <% if res.deleted %>
+    削除されました
+    <% else %>
+    <%= simple_format(h(res.content)) %>
+    <% end %>
   </div>
 </div>
 <% end %>
