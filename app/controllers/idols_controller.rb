@@ -13,8 +13,7 @@ class IdolsController < ApplicationController
   end
 
   def create
-    params[:idol].permit(:name, :idol_num, :icon_url)
-    @idol = Idol.new(params[:idol])
+    @idol = Idol.new(params[:idol].permit(:name, :idol_num, :icon_url))
     @idol.save
     redirect_to action: 'show', id: @idol.id
   end
