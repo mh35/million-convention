@@ -1,4 +1,4 @@
-class ThreadsController < ApplicationController
+class IdolThreadsController < ApplicationController
   before_action :require_login, only: [:create]
   def create
     begin
