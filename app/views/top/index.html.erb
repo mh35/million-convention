@@ -4,7 +4,7 @@
     <tr class="idol_row">
     <% idol_row.each do |idol| %>
         <td class="id_cell">
-            <a href="<%= link_to controller: 'idols', action: 'show',
+            <a href="<%= url_for controller: 'idols', action: 'show',
             id: idol.id %>">
                 <div class="idol_img_wrap">
                     <img src="<%= idol.icon_url %>" alt="<%= idol.name %>" />
