@@ -34,12 +34,19 @@
 
   <body>
     <header class="page_header">
+      <% unless controller.controller_name == 'top' %>
+        <div class="nav_top_area">
+          <%= link_to 'トップへ', controller: 'top', action: 'index' %>
+        </div>
+      <% end %>
+      <div class="user_area">
       <% if session[:uid] %>
         <%= session[:display_name] %>さんとしてログイン中
         <%= link_to 'ログアウト', controller: 'login', action: 'logout' %>
       <% else %>
         <%= link_to 'ログイン', controller: 'login', action: 'index' %>
       <% end %>
+      </div>
     </header>
     <% if flash[:error_msg] %>
     <div class="error"><%= flash[:error_msg] %></div>
