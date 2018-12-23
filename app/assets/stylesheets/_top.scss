@@ -1,3 +1,24 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.idols_table {
+    margin: 0 auto;
+    max-width: 320px;
+    width: 100%;
+}
+
+.id_cell {
+    width: 25%;
+}
+
+.idol_img_wrap {
+    margin: 0 auto;
+    max-width: 76px;
+    width: 100%;
+}
+
+.idol_name {
+    font-size: 12px;
+    text-align: center;
+}
