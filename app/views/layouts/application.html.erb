@@ -41,6 +41,12 @@
         <%= link_to 'ログイン', controller: 'login', action: 'index' %>
       <% end %>
     </header>
+    <% if flash[:error_msg] %>
+    <div class="error"><%= flash[:error_msg] %></div>
+    <% end %>
+    <% if flash[:notice_msg] %>
+    <div class="notice"><%= flash[:notice_msg] %></div>
+    <% end %>
     <%= yield %>
     <footer class="page_footer">
       <%= link_to 'プライバシーポリシー', controller: 'privacy', action: 'index' %>
