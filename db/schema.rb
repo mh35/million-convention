@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181223035541) do
+ActiveRecord::Schema.define(version: 20181223035909) do
 
   create_table "idol_threads", force: :cascade do |t|
     t.integer "idol_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20181223035541) do
     t.integer "thread_num", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["idol_id", "thread_num"], name: "index_idol_threads_on_idol_id_and_thread_num", unique: true
     t.index ["idol_id"], name: "index_idol_threads_on_idol_id"
   end
 
