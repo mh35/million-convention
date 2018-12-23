@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idol: one
+  name: MyString
+  thread_num: 1
+
+two:
+  idol: two
+  name: MyString
+  thread_num: 1
