@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'threads/show'
-
   root 'top#index'
   get '/login', to: 'login#index'
   get '/login/callback', to: 'login#callback'
