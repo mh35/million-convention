@@ -35,6 +35,8 @@ class ThreadsController < ApplicationController
         @thread.thread_num = @idol.idol_threads.length + 1
         @thread.idol = @idol
         @thread.save!
+        @user.last_wrote_at = @user.last_thread_created_at = Time.now
+        @user.save!
       end
     rescue
       redirect_to controller: 'idols', action: 'show', id: @idol.id
