@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181223034930) do
+ActiveRecord::Schema.define(version: 20181223035541) do
 
   create_table "idol_threads", force: :cascade do |t|
     t.integer "idol_id"
@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20181223034930) do
   end
 
   create_table "idols", force: :cascade do |t|
-    t.string "name"
-    t.integer "idol_num"
-    t.text "icon_url"
+    t.string "name", null: false
+    t.integer "idol_num", null: false
+    t.text "icon_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_idols_on_name", unique: true
