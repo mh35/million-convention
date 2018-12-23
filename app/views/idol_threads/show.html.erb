@@ -1,2 +1,8 @@
 <h1><%= @idol_thread.name %></h1>
-<p>Find me in app/views/threads/show.html.erb</p>
+<% @responses.each do |res| %>
+<div class="response">
+  <div class="res_header">
+    <span class="res_no"><%= res.res_no %></span>
+  </div>
+</div>
+<% end %>

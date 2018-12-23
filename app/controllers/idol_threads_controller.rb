@@ -53,6 +53,7 @@ class IdolThreadsController < ApplicationController
       redirect_to controller: 'top', action: 'index'
       return
     end
+    @responses = @idol_thread.thread_responses.order('res_no')
     @title = @idol_thread.name + ' - コンベンションセンター'
   end
 end
