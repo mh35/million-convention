@@ -48,9 +48,11 @@ class IdolThreadsController < ApplicationController
   def show
     begin
       @idol = Idol.find(params[:idol_id])
+      @idol_thread = @idol.idol_threads.find(params[:id])
     rescue
       redirect_to controller: 'top', action: 'index'
       return
     end
+    @title = @idol_thread.name + ' - コンベンションセンター'
   end
 end

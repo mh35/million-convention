@@ -1,3 +1,3 @@
 class Idol < ApplicationRecord
-    has_many :idol_threads
+  has_many :idol_threads
 end
