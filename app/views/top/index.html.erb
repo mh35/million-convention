@@ -1,4 +1,5 @@
 <h1>コンベンションセンターへようこそ</h1>
+<p><%= request.remote_ip %></p>
 <table class="idols_table">
 <% @idols.each_slice(4) do |idol_row| %>
     <tr class="idol_row">
