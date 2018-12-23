@@ -1,2 +1,6 @@
-<h1>Idols#show</h1>
-<p>Find me in app/views/idols/show.html.erb</p>
+<h1><%= @idol.name %></h1>
+<ul class="threads_list">
+<% @threads.each do |idol_thread| %>
+    <li><%= idol_thread.name %></li>
+<% end %>
+</ul>

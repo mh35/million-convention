@@ -3,6 +3,7 @@ class IdolsController < ApplicationController
   def show
     begin
       @idol = Idol.find(params[:id])
+      @threads = @idol.idol_threads.order(thread_num: 'DESC')
     rescue
       redirect_to controller: 'top', action: 'index'
     end
