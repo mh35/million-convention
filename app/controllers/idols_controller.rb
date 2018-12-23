@@ -5,6 +5,13 @@ class IdolsController < ApplicationController
       @idol = Idol.find(params[:id])
       @threads = @idol.idol_threads.order(thread_num: 'DESC')
       @title = @idol.name + ' - コンベンションセンター'
+      if @threads.empty?
+        @can_create_thread = true
+      elsif @threads.first.thread_responses.length >= 900
+        @can_create_thread = true
+      else
+        @can_create_thread = false
+      end
     rescue
       redirect_to controller: 'top', action: 'index'
     end

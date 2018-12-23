@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idol_thread: one
+  user: one
+  ip_addr: MyString
+  res_no: 1
+  content: MyText
+  deleted: false
+
+two:
+  idol_thread: two
+  user: two
+  ip_addr: MyString
+  res_no: 1
+  content: MyText
+  deleted: false
