@@ -30,11 +30,22 @@ class ThreadResponsesController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         @res = ThreadResponse.new(params[:thread_response].permit(:content))
+        @res.ip_addr = request.remote_ip
+        @res.res_no = @idol_thread.thread_responses.length + 1
+        @res.user = @user
+        @res.idol_thread = @idol_thread
+        @res.deleted = false
+        @res.save!
+        @user.last_wrote_at = Time.now
+        @user.save!
       end
     rescue
       redirect_to controller: 'idol_threads', action: 'show',
                   idol_id: @idol.id, id: @idol_thread.id
       return
     end
+    flash[:notice_msg] = '書き込みました'
+    redirect_to controller: 'idol_threads', action: 'show',
+                idol_id: @idol.id, id: @idol_thread.id
   end
 end

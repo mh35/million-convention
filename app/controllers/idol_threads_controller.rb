@@ -42,6 +42,7 @@ class IdolThreadsController < ApplicationController
       redirect_to controller: 'idols', action: 'show', id: @idol.id
       return
     end
+    flash[:notice_msg] = 'スレッドを作成しました'
     redirect_to controller: 'idols', action: 'show', id: @idol.id
   end
 
