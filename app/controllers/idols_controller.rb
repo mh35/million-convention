@@ -4,6 +4,7 @@ class IdolsController < ApplicationController
     begin
       @idol = Idol.find(params[:id])
       @threads = @idol.idol_threads.order(thread_num: 'DESC')
+      @title = @idol.name + ' - コンベンションセンター'
     rescue
       redirect_to controller: 'top', action: 'index'
     end
@@ -11,6 +12,7 @@ class IdolsController < ApplicationController
 
   def new
     @idol = Idol.new
+    @title = 'アイドル新規作成 - コンベンションセンター'
   end
 
   def create
@@ -22,6 +24,7 @@ class IdolsController < ApplicationController
   def edit
     begin
       @idol = Idol.find(params[:id])
+      @title = @idol.name + 'を編集 - コンベンションセンター'
     rescue
       redirect_to controller: 'top', action: 'index'
     end
@@ -30,6 +33,11 @@ class IdolsController < ApplicationController
   def update
     begin
       @idol = Idol.find(params[:id])
+      @idol.name = params[:idol][:name]
+      @idol.idol_num = params[:idol][:idol_num]
+      @idol.icon_url = params[:idol][:icon_url]
+      @idol.save
+      redirect_to action: 'show', id: @idol.id
     rescue
       redirect_to controller: 'top', action: 'index'
     end
