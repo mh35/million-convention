@@ -55,6 +55,8 @@ class IdolThreadsController < ApplicationController
       return
     end
     @responses = @idol_thread.thread_responses.order('res_no')
+    @thread_response = ThreadResponse.new
+    @thread_response.idol_thread = @idol_thread
     @title = @idol_thread.name + ' - コンベンションセンター'
   end
 end

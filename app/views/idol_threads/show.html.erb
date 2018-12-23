@@ -20,5 +20,10 @@
   </div>
 </div>
 <% end %>
-<% if @responses.length < 1000 %>
+<% if session[:uid] && @responses.length < 1000 %>
+<%= form_with @thread_response, url: [
+  @idol, @idol_thread, @thread_response] do |form| %>
+  <p><label>コンテンツ<br /><%= form.text_area :content %></label></p>
+  <p><%= form.submit '書き込む' %></p>
+<% end %>
 <% end %>
