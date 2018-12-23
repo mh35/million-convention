@@ -33,6 +33,14 @@
   </head>
 
   <body>
+    <header class="page_header">
+      <% if session[:uid] %>
+        <%= session[:display_name] %>さんとしてログイン中
+        <%= link_to 'ログアウト', controller: 'login', action: 'logout' %>
+      <% else %>
+        <%= link_to 'ログイン', controller: 'login', action: 'index' %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
