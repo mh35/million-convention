@@ -1,7 +1,8 @@
 <h1><%= @idol.name %></h1>
 <ul class="threads_list">
 <% @threads.each do |idol_thread| %>
-    <li><%= idol_thread.name %></li>
+    <li><%= link_to idol_thread.name, controller: 'idol_threads',
+    action: 'show', idol_id: @idol.id, id: idol_thread.id %></li>
 <% end %>
 </ul>
 <% if @can_create_thread %>
