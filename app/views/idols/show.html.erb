@@ -5,7 +5,7 @@
     action: 'show', idol_id: @idol.id, id: idol_thread.id %></li>
 <% end %>
 </ul>
-<% if @can_create_thread %>
+<% if @can_create_thread && session[:uid] %>
 <%= form_with model: @idol_thread, url: [@idol, @idol_thread] do |form| %>
     <p><label>スレッド名:<%= form.text_field :name %></label></p>
     <p><%= form.submit %></p>
