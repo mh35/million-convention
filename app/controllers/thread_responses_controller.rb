@@ -61,6 +61,7 @@ class ThreadResponsesController < ApplicationController
       @idol_thread = @idol.idol_threads.find(params[:idol_thread_id])
       @thread_response = @idol_thread.find(params[:id])
     rescue
+      flash[:error_msg] = params.inspect
       redirect_to controller: 'top', action: 'index'
       return
     end
