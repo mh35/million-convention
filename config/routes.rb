@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'terms#index'
   resources :idols, except: [:index] do
     resources :idol_threads, only: [:create, :show], path: 'threads' do
-      resources :thread_responses, only: [:create], path: 'responses'
+      resources :thread_responses, only: [:create, :destroy], path: 'responses'
     end
   end
   resources :reports, only: [:create]

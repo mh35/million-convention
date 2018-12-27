@@ -1,5 +1,6 @@
 class ThreadResponsesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, only: [:show]
+  before_action :require_admin, only: [:destroy]
   def create
     begin
       @idol = Idol.find(params[:idol_id])
@@ -51,6 +52,20 @@ class ThreadResponsesController < ApplicationController
       return
     end
     flash[:notice_msg] = '書き込みました'
+    redirect_to controller: 'idol_threads', action: 'show',
+                idol_id: @idol.id, id: @idol_thread.id
+  end
+  def destroy
+    begin
+      @idol = Idol.find(params[:idol_id])
+      @idol_thread = @idol.idol_threads.find(params[:idol_thread_id])
+      @thread_response = @idol_thread.find(params[:id])
+    rescue
+      redirect_to controller: 'top', action: 'index'
+      return
+    end
+    @thread_response.deleted = !@thread_response.deleted
+    @thread_response.save
     redirect_to controller: 'idol_threads', action: 'show',
                 idol_id: @idol.id, id: @idol_thread.id
   end

@@ -23,6 +23,18 @@
     <% end %>
     <% end %>
     <% end %>
+    <% if session[:is_admin] %>
+    <% if res.deleted
+    btn_msg = '復活'
+    else
+    btn_msg = '削除'
+    end %>
+    <div>通報数: <%= res.reports.count %></div>
+    <%= form_with model: res, method: :delete, url: [
+      @idol, @idol_thread, res] do |form| %>
+      <p><%= btn_msg %></p>
+    <% end %>
+    <% end %>
   </div>
   <div class="res_body">
     <% if res.deleted %>
