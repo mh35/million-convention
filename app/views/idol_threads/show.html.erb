@@ -32,7 +32,7 @@
     <div>通報数: <%= res.reports.count %></div>
     <%= form_with model: res, method: :delete, url: [
       @idol, @idol_thread, res] do |form| %>
-      <p><%= btn_msg %></p>
+      <p><%= form.submit btn_msg %></p>
     <% end %>
     <% end %>
   </div>
