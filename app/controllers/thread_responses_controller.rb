@@ -55,11 +55,12 @@ class ThreadResponsesController < ApplicationController
     redirect_to controller: 'idol_threads', action: 'show',
                 idol_id: @idol.id, id: @idol_thread.id
   end
+
   def destroy
     begin
       @idol = Idol.find(params[:idol_id])
       @idol_thread = @idol.idol_threads.find(params[:idol_thread_id])
-      @thread_response = @idol_thread.find(params[:id])
+      @thread_response = @idol_thread.thread_responses.find(params[:id])
     rescue
       flash[:error_msg] = params.inspect
       redirect_to controller: 'top', action: 'index'
